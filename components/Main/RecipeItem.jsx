@@ -64,6 +64,9 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
     exitButton: {
       padding: '15px 0px'
     },
+    faveStyle: {
+      padding: '15px 0px'
+    },
     listStyle: {
       height: 190,
       width: 315,
@@ -84,7 +87,8 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
     switchStyle: {
       display: 'flex',
       justifyContent: 'space-between',
-      alignItems: 'center'
+      alignItems: 'center',
+      padding: '0px 15px'
     }
   }));
 
@@ -95,8 +99,6 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
     checkedA: true,
     checkedB: false
   })
-  
-  useEffect(() => console.log(moreInfo), [moreInfo])
   
   useEffect(() => {
     bookmarked.map(item => {
@@ -171,7 +173,7 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
                 </List>
             }
             <div className={classes.switchStyle}>
-              <IconButton onClick={isBookmarked ? removeBookmark : addBookmark}>
+              <IconButton className={classes.faveStyle} onClick={isBookmarked ? removeBookmark : addBookmark}>
                 <Icon className={classes.iconStyle}>favorite</Icon>
               </IconButton>
               <FormControlLabel control={

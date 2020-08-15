@@ -38,7 +38,6 @@ const Main = ({ tab }) => {
   
   useEffect(() => {
     localStorage.setItem('bookmarkedItems', JSON.stringify(bookmarked));
-    console.log(recipes);
   }, [bookmarked])
   
   const getRecipes = async () => {
