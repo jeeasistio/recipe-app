@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   Card,
+  CardActionArea,
   CardActions,
   CardContent,
   CardMedia,
@@ -18,6 +19,8 @@ import {
   Paper,
   Switch,
   FormControlLabel,
+  Snackbar,
+  SnackbarContent,
   makeStyles
 } from '@material-ui';
 
@@ -51,7 +54,7 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
       width: 260,
       [theme.breakpoints.down('xs')]: {
         width: '100%',
-        height: 240
+        height: 220
       }
     },
     dialogHeader: {
@@ -59,27 +62,23 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
       padding: '0px 5px',
       justifyContent: 'space-between',
       alignItems: 'center',
-      boxShadow: '0px 2px 8px -8px rgba(0, 0, 0, 0.8)'
-    },
-    exitButton: {
-      padding: '15px 0px'
-    },
-    faveStyle: {
-      padding: '15px 0px'
+      boxShadow: '0px 2px 15px -15px rgba(0, 0, 0, 0.8)'
     },
     listStyle: {
-      height: 190,
+      height: '80vh',
       width: 315,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
       [theme.breakpoints.down('xs')]: {
-        width: 290,
-        height: 250,
-        padding: '0px 5px'
+        width: 300,
+        height: 250
       }
     },
     ulStyle: {
       overflow: 'scroll',
       height: 150,
-      padding: 5,
+      padding: '5px 15px',
     },
     listItemStyle: {
       fontSize: 13
@@ -88,13 +87,22 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      padding: '0px 15px'
+      padding: '0px 15px',
+      background: '#f1f1f1'
+    },
+    addStyle: {
+      background: '#093'
+    },
+    removeStyle: {
+      background: '#f55'
     }
   }));
 
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false)
   const {label, image, source, ingredientLines, calories, cautions, dietLabels, healthLabels} = recipe.recipe;
+  const [addIsOpen, setAddIsOpen] = useState(false);
+  const [removeIsOpen, setRemoveIsOpen] = useState(false);
   const [moreInfo, setMoreInfo] = useState({
     checkedA: true,
     checkedB: false
@@ -113,6 +121,7 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
   const addBookmark = () => {
     setBookmarked([...bookmarked, recipe]);
     setIsBookmarked(true);
+    setAddIsOpen(true);
   }
   
   const removeBookmark = () => {
@@ -122,16 +131,19 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
       )
     );
     setIsBookmarked(false);
+    setRemoveIsOpen(true);
   }
   
   return (
     <div>
       <Card className={classes.cardStyle}>
-        <CardMedia className={classes.media} image={image} />
-        <CardContent>
-          <Typography gutterBottom variant="h6">{label}</Typography>
-          <Typography variant="body2" color="textSecondary">- {source}</Typography>
-        </CardContent>
+        <CardActionArea onClick={() => setIsOpen(true)}>
+          <CardMedia className={classes.media} image={image} />
+          <CardContent>
+            <Typography gutterBottom variant="h6">{label}</Typography>
+            <Typography variant="body2" color="textSecondary">- {source}</Typography>
+          </CardContent>
+        </CardActionArea>
         <CardActions className={classes.cardActionsStyle}>
           <Button onClick={() => setIsOpen(true)} size="small">Show Recipe</Button>
           <IconButton onClick={isBookmarked ? removeBookmark : addBookmark}>
@@ -141,10 +153,10 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
       </Card>
       <Dialog fullWidth open={isOpen} onClose={() => setIsOpen(false)}>
         <Paper className={classes.dialogStyle}>
-            <img className={classes.dialogMedia} src={image} />
+          <img className={classes.dialogMedia} src={image} />
           <div className={classes.listStyle}>
             <div className={classes.dialogHeader}>
-              <Typography variant="h6">{label}</Typography>
+              <Typography noWrap variant="h6">{label}</Typography>
               <IconButton onClick={() => setIsOpen(false)} className={classes.exitButton}><Icon>close</Icon></IconButton>
             </div>
             {
@@ -183,6 +195,12 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
           </div>
         </Paper>
       </Dialog>
+      <Snackbar onClose={() => setAddIsOpen(false)} open={addIsOpen} autoHideDuration="1500">
+        <SnackbarContent message="Added to loved recipes" className={classes.addStyle} />
+      </Snackbar>
+      <Snackbar onClose={() => setRemoveIsOpen(false)} open={removeIsOpen} autoHideDuration="1500">
+        <SnackbarContent message="Removed from loved recipes" className={classes.removeStyle} />
+      </Snackbar>
     </div>
   );
 }
