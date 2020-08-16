@@ -59,6 +59,8 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
     },
     dialogHeader: {
       display: 'flex',
+      background: '#f93',
+      color: '#fff',
       padding: '0px 5px',
       justifyContent: 'space-between',
       alignItems: 'center',
@@ -91,7 +93,7 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
       background: '#f1f1f1'
     },
     addStyle: {
-      background: '#093'
+      background: '#0c0'
     },
     removeStyle: {
       background: '#f55'
@@ -157,7 +159,7 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
           <div className={classes.listStyle}>
             <div className={classes.dialogHeader}>
               <Typography noWrap variant="h6">{label}</Typography>
-              <IconButton onClick={() => setIsOpen(false)} className={classes.exitButton}><Icon>close</Icon></IconButton>
+              <IconButton onClick={() => setIsOpen(false)}><Icon color="primary">close</Icon></IconButton>
             </div>
             {
               moreInfo.checkedB ?
@@ -189,7 +191,7 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
                 <Icon className={classes.iconStyle}>favorite</Icon>
               </IconButton>
               <FormControlLabel control={
-                <Switch checked={moreInfo.checkedB} name="checkedB" onChange={(event) => setMoreInfo({ ...moreInfo, [event.target.name]: event.target.checked })}/>
+                <Switch className={classes.switchButton} checked={moreInfo.checkedB} name="checkedB" onChange={(event) => setMoreInfo({ ...moreInfo, [event.target.name]: event.target.checked })}/>
               } label="More Info" labelPlacement="start" />
             </div>
           </div>

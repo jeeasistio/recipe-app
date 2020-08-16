@@ -20,12 +20,18 @@ const Header = ({ tab, setCurrTab }) => {
       [theme.breakpoints.down('xs')]: {
         flexDirection: 'column',
         textAlign: 'center',
-        alignItems: 'stretch'
+        alignItems: 'stretch',
+        padding: 0
       }
+    },
+    logo: {
+      background: '#f93',
+      color: '#fff',
+      padding: '15px 8px'
     },
     tabWidth: {
       minWidth: 0,
-      width: '100px',
+      width: '100px'
     }
   }));
   const classes = useStyles();
@@ -33,8 +39,8 @@ const Header = ({ tab, setCurrTab }) => {
   const matches = useMediaQuery(theme.breakpoints.down('xs'));
   return (
     <AppBar className={classes.navLayout} position="sticky">
-      <Typography variant="h5" component="h1">Recipe App</Typography>
-      <Tabs variant={matches && "fullWidth"} value={tab} onChange={(e, n) => setCurrTab(n)}>
+      <Typography className={classes.logo} variant="h5" component="h1">Recipe App</Typography>
+      <Tabs indicatorColor="none" variant={matches && "fullWidth"} value={tab} onChange={(e, n) => setCurrTab(n)}>
         <Tab className={classes.tabWidth} label="Search" />
         <Tab className={classes.tabWidth} label="Favorites" />
       </Tabs>

@@ -17,7 +17,7 @@ const FavoritesRecipe = ({ classes, bookmarked, setBookmarked }) => {
   return (
     <section id="favorites-recipe">
       <FormControl margin="normal" className={classes.formStyle}>
-        <TextField onChange={searchFavorites} size="small" label="Search favorites..." type="search" variant="outlined" className={classes.textFieldStyle} />
+        <TextField color="secondary" onChange={searchFavorites} size="small" label="Search favorites..." type="search" variant="outlined" className={classes.textFieldStyle} />
       </FormControl>
       { !bookmarked.length &&
         <Typography className={classes.resultStyle} align="center" variant="h5">No Favorites</Typography> }
