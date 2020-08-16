@@ -51,7 +51,7 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
       }
     },
     dialogMedia: {
-      width: 260,
+      width: 270,
       [theme.breakpoints.down('xs')]: {
         width: '100%',
         height: 220
@@ -77,7 +77,7 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
     },
     ulStyle: {
       overflow: 'scroll',
-      height: 150,
+      height: 180,
       padding: '5px 15px',
     },
     listItemStyle: {
@@ -196,10 +196,10 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
         </Paper>
       </Dialog>
       <Snackbar onClose={() => setAddIsOpen(false)} open={addIsOpen} autoHideDuration="1500">
-        <SnackbarContent message="Added to loved recipes" className={classes.addStyle} />
+        <SnackbarContent message="Added to Favorite Recipes" className={classes.addStyle} />
       </Snackbar>
       <Snackbar onClose={() => setRemoveIsOpen(false)} open={removeIsOpen} autoHideDuration="1500">
-        <SnackbarContent message="Removed from loved recipes" className={classes.removeStyle} />
+        <SnackbarContent message="Removed from Favorite Recipes" className={classes.removeStyle} />
       </Snackbar>
     </div>
   );

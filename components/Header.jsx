@@ -36,7 +36,7 @@ const Header = ({ tab, setCurrTab }) => {
       <Typography variant="h5" component="h1">Recipe App</Typography>
       <Tabs variant={matches && "fullWidth"} value={tab} onChange={(e, n) => setCurrTab(n)}>
         <Tab className={classes.tabWidth} label="Search" />
-        <Tab className={classes.tabWidth} label="Loved" />
+        <Tab className={classes.tabWidth} label="Favorites" />
       </Tabs>
     </AppBar>
   )

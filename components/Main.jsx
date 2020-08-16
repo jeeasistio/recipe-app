@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui';
 import SearchRecipe from './Main/SearchRecipe.jsx';
-import LovedRecipe from './Main/LovedRecipe.jsx';
+import FavoritesRecipe from './Main/FavoritesRecipe.jsx';
 
 const Main = ({ tab }) => {
   const useStyles = makeStyles(theme => ({
@@ -48,7 +48,7 @@ const Main = ({ tab }) => {
   return (
     <div>
       {tab === 0 && <SearchRecipe classes={classes} query={query} setQuery={setQuery} recipes={recipes} setRecipes={setRecipes} bookmarked={bookmarked} setBookmarked={setBookmarked} />}
-      {tab === 1 && <LovedRecipe classes={classes} bookmarked={bookmarked} setBookmarked={setBookmarked} />}
+      {tab === 1 && <FavoritesRecipe classes={classes} bookmarked={bookmarked} setBookmarked={setBookmarked} />}
     </div>
   )
 }
