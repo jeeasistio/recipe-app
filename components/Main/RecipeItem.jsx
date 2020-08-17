@@ -51,7 +51,7 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
       }
     },
     dialogMedia: {
-      maxWidth: 270,
+      maxWidth: 300,
       width: 270,
       [theme.breakpoints.down('xs')]: {
         width: '100%',

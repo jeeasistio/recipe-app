@@ -14,7 +14,8 @@ const SearchRecipe = ({ classes, query, setQuery, recipes, setRecipes, bookmarke
   const [text, setText] = useState('')
   
   const changeQuery = () => {
-    setQuery(text)
+    setText('')
+    setQuery(text);
   }
   
   const handleEnter = (e) => {
@@ -26,7 +27,7 @@ const SearchRecipe = ({ classes, query, setQuery, recipes, setRecipes, bookmarke
   return (
     <section id="search-recipe">
       <FormControl margin="normal" className={classes.formStyle}>
-        <TextField color="secondary" onKeyUp={handleEnter} size="small" label="Search recipes..." variant="outlined" className={classes.textFieldStyle} onChange={(e) => setText(e.target.value)} />
+        <TextField value={text} color="secondary" onKeyUp={handleEnter} size="small" label="Search recipes..." variant="outlined" className={classes.textFieldStyle} onChange={(e) => setText(e.target.value)} />
         <Button variant="contained" color="secondary" onClick={changeQuery}>Search</Button>
       </FormControl>
       {!recipes.length && 

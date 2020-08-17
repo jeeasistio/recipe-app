@@ -51,8 +51,10 @@ const Main = ({ tab }) => {
   const getRecipes = async () => {
     const res = await fetch(`https://api.edamam.com/search?q=${query}&app_id=710ac8a7&app_key=403c64835e480554d074c7a2461abfe0`);
     const data = await res.json();
+    setRecipes([]);
     setRecipes(data.hits);
   }
+  
   return (
     <div>
       {tab === 0 && <SearchRecipe classes={classes} query={query} setQuery={setQuery} recipes={recipes} setRecipes={setRecipes} bookmarked={bookmarked} setBookmarked={setBookmarked} />}

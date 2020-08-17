@@ -34,7 +34,8 @@ const Header = ({ tab, setCurrTab }) => {
     tabWidth: {
       minWidth: 0,
       width: '100px',
-      fontWeight: 500
+      fontWeight: 500,
+      scrollBehavior: 'smooth'
     }
   }));
   const classes = useStyles();
@@ -55,7 +56,7 @@ const Header = ({ tab, setCurrTab }) => {
       <AppBar className={classes.navLayout} position="sticky">
         <Typography className={classes.logo} variant="h5" component="h1">Recipe App</Typography>
         <Tabs color="primary" indicatorColor="none" variant={matches && "fullWidth"} value={tab} onChange={(e, n) => setCurrTab(n)}>
-          <Tab  className={classes.tabWidth} label="Search" />
+          <Tab className={classes.tabWidth} label="Search" />
           <Tab className={classes.tabWidth} label="Favorites" />
         </Tabs>
       </AppBar>
