@@ -13,14 +13,15 @@ import RecipeItem from './RecipeItem.jsx';
 const SearchRecipe = ({ classes, query, setQuery, recipes, setRecipes, bookmarked, setBookmarked }) => {
   const [text, setText] = useState('')
   
-  const changeQuery = () => {
+  const changeQuery = (e) => {
+    e.target.blur();
     setText('')
     setQuery(text);
   }
   
   const handleEnter = (e) => {
     if (e.keyCode === 13) {
-      changeQuery();
+      changeQuery(e);
     }
   }
   

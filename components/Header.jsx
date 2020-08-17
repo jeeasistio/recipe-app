@@ -34,8 +34,7 @@ const Header = ({ tab, setCurrTab }) => {
     tabWidth: {
       minWidth: 0,
       width: '100px',
-      fontWeight: 500,
-      scrollBehavior: 'smooth'
+      fontWeight: 500
     }
   }));
   const classes = useStyles();

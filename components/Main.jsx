@@ -22,11 +22,22 @@ const Main = ({ tab }) => {
       color: '#000'
     },
     resultStyle: {
-      marginTop: 40,
+      margin: '40px auto',
       color: '#999'
     },
     deleteButtonStyle: {
-      color: '#f55'
+      color: '#fff',
+      padding: 0,
+      minWidth: 0
+    },
+    deleteStyle: {
+      background: '#f55',
+      width: 64,
+      height: 36,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 5
     },
     confirmRemove: {
       color: '#f55'

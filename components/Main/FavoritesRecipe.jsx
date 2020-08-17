@@ -21,10 +21,16 @@ const FavoritesRecipe = ({ classes, bookmarked, setBookmarked }) => {
 
   const [tempBookmarked, setTempBookmarked] = useState([]);
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
+  const [textFieldIsEmpty, setTextFieldIsEmpty] = useState(true);
 
   const searchFavorites = (e) => {
     const regex = new RegExp(`${e.target.value}`, 'ig');
-    e.target.value !== '' ?
+    if (e.target.value === '') {
+      setTextFieldIsEmpty(true);
+    } else {
+      setTextFieldIsEmpty(false);
+    }
+    !textFieldIsEmpty ?
       setTempBookmarked(bookmarked.filter(item => item.recipe.label
         .match(regex))) :
       setTempBookmarked([]);
@@ -32,6 +38,7 @@ const FavoritesRecipe = ({ classes, bookmarked, setBookmarked }) => {
   
   const removeAll = () => {
     setBookmarked([]);
+    setTempBookmarked([])
     setDialogIsOpen(false);
   }
 
@@ -39,7 +46,7 @@ const FavoritesRecipe = ({ classes, bookmarked, setBookmarked }) => {
     <section id="favorites-recipe">
       <FormControl margin="normal" className={classes.formStyle}>
         <TextField color="secondary" onChange={searchFavorites} size="small" label="Search favorites..." variant="outlined" className={classes.textFieldStyle} />
-        <Button className={classes.deleteButtonStyle} onClick={() => setDialogIsOpen(true)}><Icon>delete</Icon></Button>
+        <Button variant="contained" className={classes.deleteButtonStyle} onClick={() => setDialogIsOpen(true)}><Icon className={classes.deleteStyle}>delete</Icon></Button>
         <Dialog open={dialogIsOpen} onClose={() => setDialogIsOpen(false)}>
           <DialogTitle>Remove all favorite recipes</DialogTitle>
           <DialogContent>
@@ -51,6 +58,7 @@ const FavoritesRecipe = ({ classes, bookmarked, setBookmarked }) => {
           </DialogActions>
         </Dialog>
       </FormControl>
+      { !tempBookmarked.length && !textFieldIsEmpty && <Typography className={classes.resultStyle} align="center" variant="h5">No Results Found</Typography>}
       { !bookmarked.length &&
         <Slide in={true} direction="up" mountOnEnter unMountOnExit>
           <Typography className={classes.resultStyle} align="center" variant="h5">No Favorites</Typography>
