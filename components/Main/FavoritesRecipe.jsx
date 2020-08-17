@@ -12,7 +12,8 @@ import {
   DialogContent,
   DialogContentText,
   DialogActions,
-  Slide
+  Slide,
+  Zoom
 } from '@material-ui';
 import RecipeItem from './RecipeItem.jsx';
 
@@ -58,16 +59,20 @@ const FavoritesRecipe = ({ classes, bookmarked, setBookmarked }) => {
         {!tempBookmarked.length ? 
           bookmarked.map(recipe => {
             return (
-              <Grid item sm={6} xs={12}>
-                <RecipeItem recipe={recipe} bookmarked={bookmarked} setBookmarked={setBookmarked} />
-              </Grid>
+              <Zoom in={true} mountOnEnter unMountOnExit>
+                <Grid item sm={6} xs={12}>
+                  <RecipeItem recipe={recipe} bookmarked={bookmarked} setBookmarked={setBookmarked} />
+                </Grid>
+              </Zoom>
             )
           }) : 
           tempBookmarked.map(recipe => {
             return (
-              <Grid item sm={6} xs={12}>
-                <RecipeItem recipe={recipe} bookmarked={bookmarked} setBookmarked={setBookmarked} />
-              </Grid>
+              <Zoom in={true} mountOnEnter unMountOnExit>
+                <Grid item sm={6} xs={12}>
+                  <RecipeItem recipe={recipe} bookmarked={bookmarked} setBookmarked={setBookmarked} />
+                </Grid>
+              </Zoom>
             )
           })
         }

@@ -103,7 +103,7 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
     },
     removeStyle: {
       background: '#f55',
-      maxWidth: 300,
+      maxWidth: 240,
       minWidth: 200,
       width: 240,
       margin: 'auto'

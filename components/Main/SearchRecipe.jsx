@@ -5,7 +5,8 @@ import {
   TextField,
   Button,
   Typography,
-  Slide
+  Slide,
+  Zoom
 } from '@material-ui';
 import RecipeItem from './RecipeItem.jsx';
 
@@ -35,9 +36,11 @@ const SearchRecipe = ({ classes, query, setQuery, recipes, setRecipes, bookmarke
       <Grid container className={classes.gridLayout} spacing="2" justify="space-evenly" alignItems="center">
         {recipes.map(recipe => {
           return (
-            <Grid item sm={6} xs={12}>
-              <RecipeItem recipe={recipe} bookmarked={bookmarked} setBookmarked={setBookmarked} />
-            </Grid>
+            <Zoom in={true} mountOnEnter unMountOnExit>
+              <Grid item sm={6} xs={12}>
+                <RecipeItem recipe={recipe} bookmarked={bookmarked} setBookmarked={setBookmarked} />
+              </Grid>
+            </Zoom>
           )
         })}
       </Grid>
