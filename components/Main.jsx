@@ -4,6 +4,7 @@ import SearchRecipe from './Main/SearchRecipe.jsx';
 import FavoritesRecipe from './Main/FavoritesRecipe.jsx';
 
 const Main = ({ tab }) => {
+
   const useStyles = makeStyles(theme => ({
     gridLayout: {
       padding: '5px 15px',
@@ -43,6 +44,7 @@ const Main = ({ tab }) => {
       color: '#f55'
     }
   }))
+
   const classes = useStyles();
   const [query, setQuery] = useState('chicken');
   const [recipes, setRecipes] = useState([]);
@@ -50,27 +52,27 @@ const Main = ({ tab }) => {
   const [bookmarked, setBookmarked] = useState(
     items ? JSON.parse(items) : []
   );
-  
+
   useEffect(() => {
     getRecipes();
   }, [query]);
-  
+
   useEffect(() => {
     localStorage.setItem('bookmarkedItems', JSON.stringify(bookmarked));
   }, [bookmarked])
-  
+
   const getRecipes = async () => {
     const res = await fetch(`https://api.edamam.com/search?q=${query}&app_id=710ac8a7&app_key=403c64835e480554d074c7a2461abfe0`);
     const data = await res.json();
     setRecipes([]);
     setRecipes(data.hits);
   }
-  
+
   return (
-    <div>
+    <main>
       {tab === 0 && <SearchRecipe classes={classes} query={query} setQuery={setQuery} recipes={recipes} setRecipes={setRecipes} bookmarked={bookmarked} setBookmarked={setBookmarked} />}
       {tab === 1 && <FavoritesRecipe classes={classes} bookmarked={bookmarked} setBookmarked={setBookmarked} />}
-    </div>
+    </main>
   )
 }
 

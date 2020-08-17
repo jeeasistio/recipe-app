@@ -12,6 +12,7 @@ import {
 } from '@material-ui';
 
 const Header = ({ tab, setCurrTab }) => {
+
   const useStyles = makeStyles((theme) => ({
     navLayout: {
       display: 'flex',
@@ -37,10 +38,11 @@ const Header = ({ tab, setCurrTab }) => {
       fontWeight: 500
     }
   }));
+
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('xs'));
-  
+
   const HideOnScroll = ({ children, window }) => {
     const trigger = useScrollTrigger({ target: window ? window() : undefined });
     return (
@@ -49,7 +51,7 @@ const Header = ({ tab, setCurrTab }) => {
       </Slide>
     )
   }
-  
+
   return (
     <HideOnScroll>
       <AppBar className={classes.navLayout} position="sticky">

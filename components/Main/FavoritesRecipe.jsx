@@ -29,13 +29,12 @@ const FavoritesRecipe = ({ classes, bookmarked, setBookmarked }) => {
       setTextFieldIsEmpty(true);
     } else {
       setTextFieldIsEmpty(false);
-    }
-    !textFieldIsEmpty ?
+    }!textFieldIsEmpty ?
       setTempBookmarked(bookmarked.filter(item => item.recipe.label
         .match(regex))) :
       setTempBookmarked([]);
   }
-  
+
   const removeAll = () => {
     setBookmarked([]);
     setTempBookmarked([])
@@ -50,7 +49,7 @@ const FavoritesRecipe = ({ classes, bookmarked, setBookmarked }) => {
         <Dialog open={dialogIsOpen} onClose={() => setDialogIsOpen(false)}>
           <DialogTitle>Remove all favorite recipes</DialogTitle>
           <DialogContent>
-            <DialogContentText>Are you sure you want to remove all your favorite recipes?</DialogContentText>
+            <DialogContentText>Are you sure you want to remove all of your favorite recipes?</DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={() => setDialogIsOpen(false)}>No</Button>
@@ -58,8 +57,8 @@ const FavoritesRecipe = ({ classes, bookmarked, setBookmarked }) => {
           </DialogActions>
         </Dialog>
       </FormControl>
-      { !tempBookmarked.length && !textFieldIsEmpty && <Typography className={classes.resultStyle} align="center" variant="h5">No Results Found</Typography>}
-      { !bookmarked.length &&
+      {!tempBookmarked.length && !textFieldIsEmpty && <Typography className={classes.resultStyle} align="center" variant="h5">No Results Found</Typography>}
+      {!bookmarked.length &&
         <Slide in={true} direction="up" mountOnEnter unMountOnExit>
           <Typography className={classes.resultStyle} align="center" variant="h5">No Favorites</Typography>
         </Slide>}

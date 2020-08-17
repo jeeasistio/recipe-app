@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Grid, CssBaseline, createMuiTheme, ThemeProvider } from '@material-ui';
+import {
+  Grid,
+  CssBaseline,
+  createMuiTheme,
+  ThemeProvider
+} from '@material-ui';
 import Header from './components/Header.jsx';
 import Main from './components/Main.jsx';
 
 const App = () => {
-  
+
   const theme = createMuiTheme({
     palette: {
       primary: {
@@ -20,7 +25,7 @@ const App = () => {
       fontFamily: '"Lato", "Roboto", "sans-serif"'
     }
   })
-  
+
   const [currTab, setCurrTab] = useState(0);
   return (
     <div className="App">

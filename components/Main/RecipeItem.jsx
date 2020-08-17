@@ -24,10 +24,10 @@ import {
   makeStyles
 } from '@material-ui';
 
-const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
-    const [isBookmarked, setIsBookmarked] = useState(false);
-    
-    const useStyles = makeStyles(theme => ({
+const RecipeItem = ({ recipe, bookmarked, setBookmarked }) => {
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  const useStyles = makeStyles(theme => ({
     media: {
       height: 200,
     },
@@ -112,14 +112,14 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
 
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false)
-  const {label, image, source, ingredientLines, calories, cautions, dietLabels, healthLabels} = recipe.recipe;
+  const { label, image, source, ingredientLines, calories, cautions, dietLabels, healthLabels } = recipe.recipe;
   const [addIsOpen, setAddIsOpen] = useState(false);
   const [removeIsOpen, setRemoveIsOpen] = useState(false);
   const [moreInfo, setMoreInfo] = useState({
     checkedA: true,
     checkedB: false
   })
-  
+
   useEffect(() => {
     bookmarked.map(item => {
       if (item) {
@@ -129,23 +129,23 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
       }
     })
   })
-  
+
   const addBookmark = () => {
     setBookmarked([...bookmarked, recipe]);
     setIsBookmarked(true);
     setAddIsOpen(true);
   }
-  
+
   const removeBookmark = () => {
     setBookmarked(
-      bookmarked.filter(item => 
+      bookmarked.filter(item =>
         label !== item.recipe.label
       )
     );
     setIsBookmarked(false);
     setRemoveIsOpen(true);
   }
-  
+
   return (
     <div>
       <Card className={classes.cardStyle}>
@@ -171,8 +171,7 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
               <Typography noWrap variant="h6">{label}</Typography>
               <IconButton onClick={() => setIsOpen(false)}><Icon color="primary">close</Icon></IconButton>
             </div>
-            {
-              moreInfo.checkedB ?
+            {moreInfo.checkedB ?
                 <List className={classes.ulStyle}>
                   <Typography variant="body1">Calories: </Typography>
                   <ListItem className={classes.listItemStyle}><ListItemText disableTypography>{calories}</ListItemText></ListItem>
