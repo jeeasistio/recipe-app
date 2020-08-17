@@ -1,26 +1,59 @@
-import React, {useState} from 'react';
-import { Grid, Typography, FormControl, TextField } from '@material-ui';
+import React, { useState } from 'react';
+import {
+  Grid,
+  Typography,
+  FormControl,
+  TextField,
+  IconButton,
+  Icon,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  Slide
+} from '@material-ui';
 import RecipeItem from './RecipeItem.jsx';
 
 const FavoritesRecipe = ({ classes, bookmarked, setBookmarked }) => {
-  
+
   const [tempBookmarked, setTempBookmarked] = useState([]);
-  
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+
   const searchFavorites = (e) => {
     const regex = new RegExp(`${e.target.value}`, 'ig');
-    e.target.value !== '' ? 
+    e.target.value !== '' ?
       setTempBookmarked(bookmarked.filter(item => item.recipe.label
         .match(regex))) :
       setTempBookmarked([]);
   }
   
+  const removeAll = () => {
+    setBookmarked([]);
+    setDialogIsOpen(false);
+  }
+
   return (
     <section id="favorites-recipe">
       <FormControl margin="normal" className={classes.formStyle}>
-        <TextField color="secondary" onChange={searchFavorites} size="small" label="Search favorites..." type="search" variant="outlined" className={classes.textFieldStyle} />
+        <TextField color="secondary" onChange={searchFavorites} size="small" label="Search favorites..." variant="outlined" className={classes.textFieldStyle} />
+        <Button className={classes.deleteButtonStyle} onClick={() => setDialogIsOpen(true)}><Icon>delete</Icon></Button>
+        <Dialog open={dialogIsOpen} onClose={() => setDialogIsOpen(false)}>
+          <DialogTitle>Remove all favorite recipes</DialogTitle>
+          <DialogContent>
+            <DialogContentText>Are you sure you want to remove all your favorite recipes?</DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setDialogIsOpen(false)}>No</Button>
+            <Button onClick={removeAll} className={classes.confirmRemove}>Yes</Button>
+          </DialogActions>
+        </Dialog>
       </FormControl>
       { !bookmarked.length &&
-        <Typography className={classes.resultStyle} align="center" variant="h5">No Favorites</Typography> }
+        <Slide in={true} direction="up" mountOnEnter unMountOnExit>
+          <Typography className={classes.resultStyle} align="center" variant="h5">No Favorites</Typography>
+        </Slide>}
       <Grid container className={classes.gridLayout} spacing="2" justify="space-evenly" alignItems="center">
         {!tempBookmarked.length ? 
           bookmarked.map(recipe => {

@@ -18,10 +18,18 @@ const Main = ({ tab }) => {
       marginTop: 20
     },
     textFieldStyle: {
-      width: '70%'
+      width: '70%',
+      color: '#000'
     },
     resultStyle: {
-      marginTop: 40
+      marginTop: 40,
+      color: '#999'
+    },
+    deleteButtonStyle: {
+      color: '#f55'
+    },
+    confirmRemove: {
+      color: '#f55'
     }
   }))
   const classes = useStyles();

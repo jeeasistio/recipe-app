@@ -5,8 +5,10 @@ import {
   makeStyles,
   Tabs,
   Tab,
+  Slide,
   useMediaQuery,
-  useTheme
+  useTheme,
+  useScrollTrigger
 } from '@material-ui';
 
 const Header = ({ tab, setCurrTab }) => {
@@ -31,20 +33,33 @@ const Header = ({ tab, setCurrTab }) => {
     },
     tabWidth: {
       minWidth: 0,
-      width: '100px'
+      width: '100px',
+      fontWeight: 500
     }
   }));
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('xs'));
+  
+  const HideOnScroll = ({ children, window }) => {
+    const trigger = useScrollTrigger({ target: window ? window() : undefined });
+    return (
+      <Slide appear={false} direction="down" in={!trigger}>
+        {children}
+      </Slide>
+    )
+  }
+  
   return (
-    <AppBar className={classes.navLayout} position="sticky">
-      <Typography className={classes.logo} variant="h5" component="h1">Recipe App</Typography>
-      <Tabs indicatorColor="none" variant={matches && "fullWidth"} value={tab} onChange={(e, n) => setCurrTab(n)}>
-        <Tab className={classes.tabWidth} label="Search" />
-        <Tab className={classes.tabWidth} label="Favorites" />
-      </Tabs>
-    </AppBar>
+    <HideOnScroll>
+      <AppBar className={classes.navLayout} position="sticky">
+        <Typography className={classes.logo} variant="h5" component="h1">Recipe App</Typography>
+        <Tabs color="primary" indicatorColor="none" variant={matches && "fullWidth"} value={tab} onChange={(e, n) => setCurrTab(n)}>
+          <Tab  className={classes.tabWidth} label="Search" />
+          <Tab className={classes.tabWidth} label="Favorites" />
+        </Tabs>
+      </AppBar>
+    </HideOnScroll>
   )
 }
 

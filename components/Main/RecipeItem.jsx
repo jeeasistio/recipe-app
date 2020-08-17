@@ -51,6 +51,7 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
       }
     },
     dialogMedia: {
+      maxWidth: 270,
       width: 270,
       [theme.breakpoints.down('xs')]: {
         width: '100%',
@@ -68,7 +69,8 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
     },
     listStyle: {
       height: '80vh',
-      width: 315,
+      maxWidth: 310,
+      width: 310,
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
@@ -89,14 +91,22 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      padding: '0px 15px',
+      padding: '0px 12px 0px 0px',
       background: '#f1f1f1'
     },
     addStyle: {
-      background: '#0c0'
+      background: '#0c0',
+      maxWidth: 200,
+      minWidth: 200,
+      width: 200,
+      margin: 'auto'
     },
     removeStyle: {
-      background: '#f55'
+      background: '#f55',
+      maxWidth: 300,
+      minWidth: 200,
+      width: 240,
+      margin: 'auto'
     }
   }));
 
@@ -191,7 +201,7 @@ const RecipeItem = ({recipe, bookmarked, setBookmarked}) => {
                 <Icon className={classes.iconStyle}>favorite</Icon>
               </IconButton>
               <FormControlLabel control={
-                <Switch className={classes.switchButton} checked={moreInfo.checkedB} name="checkedB" onChange={(event) => setMoreInfo({ ...moreInfo, [event.target.name]: event.target.checked })}/>
+                <Switch checked={moreInfo.checkedB} name="checkedB" onChange={(event) => setMoreInfo({ ...moreInfo, [event.target.name]: event.target.checked })}/>
               } label="More Info" labelPlacement="start" />
             </div>
           </div>

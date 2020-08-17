@@ -17,7 +17,7 @@ const App = () => {
       }
     },
     typography: {
-      fontFamily: 'Lato'
+      fontFamily: '"Lato", "Roboto", "sans-serif"'
     }
   })
   
