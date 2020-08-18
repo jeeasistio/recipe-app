@@ -14,22 +14,17 @@ const SearchRecipe = ({ classes, query, setQuery, recipes, setRecipes, bookmarke
   const [text, setText] = useState('')
 
   const changeQuery = (e) => {
+    e.preventDefault();
     e.target.blur();
     setText('')
     setQuery(text);
   }
 
-  const handleEnter = (e) => {
-    if (e.keyCode === 13) {
-      changeQuery(e);
-    }
-  }
-
   return (
     <section id="search-recipe">
-      <FormControl margin="normal" className={classes.formStyle}>
-        <TextField value={text} color="secondary" onKeyUp={handleEnter} size="small" label="Search recipes..." variant="outlined" className={classes.textFieldStyle} onChange={(e) => setText(e.target.value)} />
-        <Button variant="contained" color="secondary" onClick={changeQuery}>Search</Button>
+      <FormControl component="form" onSubmit={changeQuery} margin="normal" className={classes.formStyle}>
+        <TextField value={text} color="secondary" size="small" label="Search recipes..." variant="outlined" className={classes.textFieldStyle} onChange={(e) => setText(e.target.value)} />
+        <Button type="submit" variant="contained" color="secondary">Search</Button>
       </FormControl>
       {!recipes.length && 
         <Slide in={true} direction="up" mountOnEnter unMountOnExit>
